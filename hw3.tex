@@ -1,0 +1,219 @@
+\documentclass[11pt]{hmcpset}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,enumerate,graphicx}
+
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\braket}[2]{\langle #1|#2\rangle}
+\newcommand{\braketop}[3]{\langle #1| #2 | #3 \rangle}
+\newcommand{\normsq}[1]{\left|#1\right|^2}
+\newcommand{\prob}[2]{\normsq{\braket{#1}{#2}}}
+\newcommand{\avg}[1]{\langle #1 \rangle}
+
+
+\usepackage{xcolor}
+\usepackage{listings}
+
+\definecolor{mGreen}{rgb}{0,0.6,0}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.82}
+\definecolor{backgroundColour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{Python}
+{
+	language=Python,
+	backgroundcolor=\color{backgroundColour},   
+	commentstyle=\color{mGreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{mGray},
+	stringstyle=\color{mPurple},
+	basicstyle=\footnotesize\ttfamily,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	%numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=3
+}
+
+
+
+\name{}
+\class{PHYS134}
+\assignment{Homework/Project 3}
+\duedate{2021-02-22}
+
+\begin{document}
+\problemlist{Steck: }
+%===========================================================
+\begin{problem}[Steck 4.2 (5\,pts)]
+	For a plane-wave solution of the wave equation,
+	\[
+	\mathbf{E}(r,t) = \mathbf{E}_0 \cos(\mathbf{k} \cdot  \mathbf{r} - \omega t + \phi_0 )
+	\]
+	we can write the constant $\mathbf{E}_0$ as $\hat e E_0$ , where the unit vector $\hat e$ is the polarization and $E_0$ is a scalar constant. Show that the wave cannot be polarized along the $\mathbf{k}$ direction. Prove this directly; do not make any assumption about the form of the magnetic field.
+	
+\end{problem}
+
+\begin{solution}
+	
+	\vfill
+	
+\end{solution}
+	\pagebreak
+%===========================================================
+\begin{problem}[Steck 4.4 (5\,pts)]
+	The energy density (energy stored per unit volume) of an electromagnetic field in a simple, linear
+	dielectric is ($w$, not $\omega$):
+	\[
+	w = \frac{1}{2} \left( \epsilon \mathbf{E} \cdot \mathbf{E} + \mu_0 \mathbf{H} \cdot \mathbf{H} \right)
+	\]
+	for real field $\mathbf{E}$ and $\mathbf{H}$. (Remember that $\mathbf{B}=\mu \mathbf{H}$ and for non-magnetic materials, $\mu=\mu_0$, though this is not really relevant here.)
+	Consider a plane wave in complex notation of the form
+	\[
+	\mathbf{E}^{(+)}(\mathbf{r},t) = \hat z E_0^{(+)} e^{i(k x-\omega t)},
+	\]
+	with $E_0^{(+)}$ a complex constant. There is a similar expression for $\mathbf{H}^{(+)}$ in terms of $H_0^{(+)}$
+	\begin{itemize}
+		\item[(a)] Show that the time-averaged energy density is given by
+		\[
+		\left< w \right> = \frac{1}{4} \left( \epsilon E_0^2 + \mu_0 H_0^2 \right),
+		\]
+		where $E_0=2|E_0^{(+)}|$. What is the significance of the extra factor of 1/2 in this expression? (Hint: it's not the definition of $E_0$.)
+		\item[(b)] What is the real wave corresponding to the complex wave given above? Be explicit about the
+		parameter dependence.
+		\item[(c)] Calculate $w$, the Poynting vector $\mathbf{S}$, and the intensity $I$ for the real plane wave of part (b).
+		\item[(d)] Show, for the real plane wave of part (b), that $\mathbf{S} = c w \hat x$. With the interpretation that the Poynting vector represents an energy flux density, argue that this means that the electromagnetic energy of a plane wave propagates with velocity $c$.
+	\end{itemize}
+\end{problem}
+
+\begin{solution}
+	
+	\vfill
+	
+\end{solution}
+	\pagebreak
+	%===========================================================
+	\begin{problem}[Playing with 2D arrays, plotting images, animations (5\,pts)]
+		The key to plotting 2D arrays or images is the function \texttt{imshow}. It will show whatever array you give it. You often need to do bookkeeping to keep track of what the array \textit{means} and what the $x$ and $y$ coordinate of each array element is. To that end, start here:
+\begin{lstlisting}[style=Python]
+N = 11
+axis_x = np.linspace(-5,5,N)  # 1D array of x values
+axis_y = np.linspace(-5,5,N)  # 1D array of y values
+X,Y = np.meshgrid(axis_x,axis_y)  # Each is a 2D array that varries along 1 dim
+\end{lstlisting}
+	Look at each of these arrays just by evaluating each. Now try evaluating each of the following: \texttt{imshow(X)}, \texttt{imshow(Y)}, and \texttt{imshow(X+Y)}. Note that the axis tick labels act as if they are labeling the rows and columns of a matrix. First, they don't know to go from -5 to +5. Second, the y axis starts at the top and goes down like it's numbering rows of a matrix. to fix this, you need to use two options in \texttt{imshow}: \texttt{origin} to flip the image from ``matrix rows'' to ''plot axis'' and \texttt{extent} to tell it the boundaries of the array's x and y coordinates:
+\begin{lstlisting}[style=Python]
+extents = (min(axis_x),max(axis_x),min(axis_y),max(axis_y))
+imshow(X+Y, extent=extents, origin='lower')
+\end{lstlisting}
+	Even this isn't quite right, since the coordinates are supposed to represent the \textit{center} of the pixels. Extending by a half pixel on each side does the trick, but it's not necessary for large \texttt{N}:
+\begin{lstlisting}[style=Python]
+dx = axis_x[1]-axis_x[0]
+dy = axis_y[1]-axis_y[0]
+extents = (min(axis_x)-dx/2,max(axis_x)+dx/2,min(axis_y)-dy/2,max(axis_y)+dy/2)
+\end{lstlisting}
+While we're at it, we usually want to show intensities in a gray-scale colormap:
+\begin{lstlisting}[style=Python]
+imshow(X+Y, extent=extents, origin='lower', cmap='gray')
+\end{lstlisting}
+	Now you can increase N to something more reasonable like 500 and plot other functions, like the amplitude of a plane wave, say \texttt{cos(2*X+4*Y)}.
+	
+	To do an animation, you need to start a new notebook with \texttt{\%pylab notebook} as the first cell. In \texttt{notebook} mode, remember to close each figure as you make them with the little ``power off'' button---if you don't, the next figure will be drawn over the previous figure.
+	
+	To make an animation, you need to import the animation package, define a list of times for each frame, define a function that updates the array at each step, and call an animation function. With the relevant variables defined again in the new notebook, try animating the plane wave:
+\begin{lstlisting}[style=Python]
+import matplotlib.animation
+t = np.linspace(0,1,num=20)  # time steps. 20 steps from 0 to 1
+omega = 2*pi*1 # in ths example, phase advances 2pi as we get to the last step
+
+fig, ax = plt.subplots()  # make a figure that we'll modify
+A = cos(2*X+4*Y)  # Need something to plot; this sets the color scale
+im = ax.imshow(A, extent=extents, origin='lower', cmap='gray')
+
+def animate(i):
+    # This will get called with i going from 0 to 19
+    A = cos(2*X+4*Y - omega*t[i])
+    im.set_data(A)
+
+ani = matplotlib.animation.FuncAnimation(fig, animate, frames=len(t))
+\end{lstlisting}
+If you want to get really fancy and show the animation with controls and a nifty slider, try:
+\begin{lstlisting}[style=Python]
+from IPython.display import HTML
+HTML(ani.to_jshtml())
+\end{lstlisting}
+	\end{problem}
+	\pagebreak
+%===========================================================
+\begin{problem}[Steck 5.6, modified to fit our setup with extra Python animations (10\,pts)]
+	Consider a Michelson interferometer, with a 50/50 beam splitter.
+	
+	Suppose a \textit{spherically expanding} beam enters the interferometer from a focused laser spot or from a lamp with a small hole in front of it. An outgoing spherical wave has the form
+	\[
+	E^{(+)}(r,t) = \frac{A}{r}e^{i(kr-\omega t)},
+	\]
+	where the constant $A$ has to do with the brightness of the source and $r$ is the distance from the source. You could check that this satisfies the wave equation in spherical coordinates, but don't bother---you'll do that in quantum and other classes.
+	
+	Assume the beam and mirrors are all ideally aligned, but that the two mirrors differ by some small amount $\Delta z$. Show that there will be a ``bull's-eye'' intensity pattern of concentric interference fringes on the screen,	provided that the arm lengths are not equal. You'll do this two ways (and you can do them in either order): First with an analytical approximation, and then by making a 2D animation of the intensity as $\Delta z$ changes a little.
+	
+	The intensity $I$ is most usefully given by equation 4.66:
+	\[
+	I = \frac{2|E^{(+)}|^2}{\eta}
+	\qquad \textrm{where} \qquad
+	 \eta := \frac{1}{n}\sqrt{\frac{\mu_0}{\epsilon_0}}
+	%\qquad \textrm{is a constant imepedance in a media}
+	\]
+	
+	You don't need to do calculations involving all of the reflections off of each of the mirrors and beam splitter---just ``unroll'' the interferometer treat it as a superposition of two waves, one from each path. Call $z_1$ the total distance along the optical path through the interferometer reflecting off of mirror 1 and similarly for $z_2$. Let $z_2 = z_1 + \Delta z$.
+	
+	\textbf{Hints for Analytical approximation}:  Make the approximation that $z_1$ is much bigger than both $\Delta z$ and the $x$ and $y$ coordinates. The small screen only captures light that actually makes it through the interferometer---most of the spherical wave misses the interferometer. To quote the original problem from the text book, ``Try to focus only on the important stuff.'' This means, for example, that you can ignore the slightly different amplitudes due to the slightly farther path length, but you you need to be more careful about the phase difference.
+	
+	\textbf{Jupyter Exercise with Numbers and Plots:} Consider the interferometer in lab with a HeNe laser. Look up the wavelength. The total path length from the source, through the mirrors of the interferometer, to the screen is about 70\,cm. The screen is around 2\,cm by 2\,cm (1\,cm on each side of the optical axis).  Make an animation of the intensity on the screen as the difference in mirror positions grows from being different by 3\,cm to being different by 3\,cm plus an extra wavelength (the first and last frame should look the same). No need to do any Taylor expansions here.
+\end{problem}
+
+%\begin{solution}
+%	\vfill
+%\end{solution}
+
+	\pagebreak
+
+%===========================================================
+\begin{problem}[Index of Refraction of Air (20\,pts)]
+	Watch the video I made about the interferometer where I take data. 	
+	When the valve is open, the incoming air molecules scatter light, and hence they increase the refractive index and increase the optical path length of that leg of the interferometer.
+	
+	 All of the data I took is in \texttt{Lab2InterferometerData.zip} on Sakai. You can read an oscilloscope comma-separated variable (CSV) file with the following command, examples of which are in a jupyter notebook in the zip file:
+\begin{lstlisting}[style=Python]
+data = loadtxt('SDS00005.csv', delimiter=',', skiprows=12)
+\end{lstlisting}
+	The length of the inside of the vacuum vessel is 2.0165 $\pm$ 0.0005 inches long.
+
+	Since the index of refraction of air is so close to 1, you will find, report, and compare $n-1$.
+
+	There are 9 data runs. You need to use at least 5 to get a mean and standard error for each data point. I'd start with the later runs first because I probably got better at doing the experiment. There may also be runs that you need to throw out---I didn't mess up on purpose to trick you, but I also haven't done this analysis myself yet on this data.
+	
+	The first step is to count the fringes that have gone by at each mark. This should probably be done ``by eye'' by zooming in on the plots (use \texttt{\%pylab notebook}). You should be able to estimate within a quarter of a fringe or better. The second step is to plot the number of fringes recorded since the valve was opened versus the change in chamber pressure since the valve was opened. The plot should be linear.
+	
+	A least-squares fit of the data to a straight line should yield a $y$ intercept of zero (within uncertainty), and the slope of the fit can be used to deduce a value of $n-1$ for air at atmospheric pressure. This translation requires thinking about what's actually going on in the interferometer, what the extra optical path length does, and what the index of refraction means.
+	
+	If you don't get an intercept of zero, it's possible that a perfect vacuum was not achieved each run or that the pressure gauge has a systematic shift. In this case, begin counting with the first mark.
+	
+	Compare your value for $n-1$ with the value tabulated in, for example, the CRC Handbook, the relevant page of which is included below. You will have to take into account the difference of the laboratory temperature from the temperature at which the tabulated value was measured. Convert your measured value of $n-1$ to a value at the temperature quoted in the literature (e.g., 15$^\circ$C). (The ideal gas law is adequate for this purpose.)
+\end{problem}
+
+\begin{solution}
+	
+	\vfill
+	
+\end{solution}
+
+\pagebreak
+%===========================================================
+\includegraphics[width=1.05\textwidth]{CRC_index_of_refraction_of_air.jpg}
+
+\end{document}

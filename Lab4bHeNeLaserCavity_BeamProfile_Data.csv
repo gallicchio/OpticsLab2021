@@ -1,0 +1,18 @@
+HeNe Laser Beam Profile Measurement,,,,,
+Full Power is 7.47mW at 10mm,,,,,
+Zero power (all the way blocked) was fluctuating between 0mW and 0.01mW measured at 17mm,,,,,
+90% power calculated to be 6.73mW was measured at 13.285mm,,,,,
+10% power calculated to be 0.748mW was measured at 13.820mm,,,,,
+This gave a range to take data: from 13mm to 14mm. I did 5 passes in steps of 0.1mm,,,,,
+blade (mm),P1 (mW),P2 (mW),P3 (mW),P4 (mW),P5(mW)
+13,7.38,7.4,7.4,7.39,7.41
+13.1,7.3,7.29,7.3,7.29,7.31
+13.2,7.07,7.06,7.07,7.06,7.08
+13.3,6.64,6.63,6.63,6.65,6.66
+13.4,5.78,5.79,5.8,5.79,5.8
+13.5,4.54,4.53,4.54,4.55,4.56
+13.6,3.02,3.05,3.05,3.06,3.03
+13.7,1.74,1.71,1.74,1.73,1.74
+13.8,0.86,0.85,0.88,0.87,0.87
+13.9,0.39,0.39,0.4,0.4,0.4
+14,0.16,0.16,0.16,0.17,0.16

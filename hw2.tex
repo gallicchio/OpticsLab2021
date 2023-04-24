@@ -1,0 +1,145 @@
+\documentclass[11pt]{hmcpset}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,enumerate,graphicx}
+
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\braket}[2]{\langle #1|#2\rangle}
+\newcommand{\braketop}[3]{\langle #1| #2 | #3 \rangle}
+\newcommand{\normsq}[1]{\left|#1\right|^2}
+\newcommand{\prob}[2]{\normsq{\braket{#1}{#2}}}
+\newcommand{\avg}[1]{\langle #1 \rangle}
+
+\name{}
+\class{PHYS134}
+\assignment{Homework/Project 2}
+\duedate{2021-02-08}
+
+\begin{document}
+%\problemlist{Steck: 2.3, 2.5, 2.8, 2.10, 2.11, 2.12, 2.14, Lens Experimental Design}
+\problemlist{Steck: 2.8, 2.10, 2.11, Lens Experimental Design}
+%===========================================================
+\begin{problem}[Steck 2.8 (3\,pts)]
+	\begin{itemize}
+		\item[(a)] Derive the ray-transfer matrix for free-space propagation, followed by a thin lens, followed by more
+	free-space propagation, as shown in the Figure.
+		\item[(b)] Show that applying the thin-lens law,
+		\[
+		\frac{1}{d_1} + \frac{1}{d_2} = \frac{1}{f}
+		\]
+	\textit{all} rays originating from a single point $y_1$ in the input plane reach the output plane at the single point $y_2$, independent of the input angle $y'_1$. Compute the \textbf{magnification} $y_2/y_1$.
+		\item[(c)] Show that if $d_2=f$, all parallel incident rays are focused to a single point in the output plane.
+	\end{itemize}
+\end{problem}
+
+\begin{solution}
+	
+	\vfill
+	
+\end{solution}
+	\pagebreak
+%===========================================================
+\begin{problem}[Steck 2.10 (2\,pts)]
+	\begin{itemize}
+		\item[(a)] Suppose that two thin lenses of focal length $f_1$ and $f_2$ are placed in contact. Show that the
+		combination acts as a thin lens with a focal length given by
+		\[
+		\frac{1}{f} = \frac{1}{f_1} + \frac{1}{f_2}
+		\]
+		\item[(b)] The \textbf{optical power} of a lens is defined as $1/f$ , where $f$ is the focal length of the lens. Typically the lens power is measured in \textbf{diopters}, defined as $1/f$ where $f$ is measured in meters (i.e., a lens with a 100\,mm focal length has a power of 10 diopters). Based on your answer for part (a), why is the optical power a natural way to characterize a thin lens?
+	\end{itemize}
+\end{problem}
+
+\begin{solution}
+	
+	\vfill
+	
+\end{solution}
+	\pagebreak
+%===========================================================
+\begin{problem}[Steck 2.11 (2\,pts)]
+	Show that the effective focal length f eff of two lenses having focal lengths f 1 and f 2 , separated by a
+	distance d, is given by
+	\[
+	\frac{1}{f_\mathrm{eff}} = \frac{1}{f_1} + \frac{1}{f_2} - \frac{d}{f_1 f_2}
+	\]
+	Note that this system is no longer a thin lens, so for this to work out you should show that the effect
+	of the two-lens optical system is equivalent to that of a single lens of focal length $f_\mathrm{eff}$, with free-space propagation of distances $d_1$ and $d_2$ before and after the single lens, respectively, where
+	\[
+	\frac{1}{d_1} = \frac{1}{d} - \frac{1}{f_1} + \frac{f_2}{f_1 d}, \qquad
+	\frac{1}{d_2} = \frac{1}{d} - \frac{1}{f_2} + \frac{f_1}{f_2 d},
+	\]
+	This problem is a simple model for one realization of a ``zoom'' or variable focus lens, e.g., for still
+	photography. (A ``true zoom'' lens would also shift the location of the pair to maintain focus as the
+	focal length changes, whereas a simpler variable focus lens merely changes the separation to achieve
+	different focal lengths, possibly requiring a refocusing adjustment.)
+\end{problem}
+
+\begin{solution}
+	
+	\vfill
+	
+\end{solution}
+
+	\pagebreak
+%%===========================================================
+%\begin{problem}[Steck 2.14 (2\,pts)]
+%	A retroreflector is any optic that reflects an incident ray, such that the exiting ray is parallel (but
+%	opposite) to the incoming ray. One version of a ``cat's eye'' retroreflector uses a thin lens of focal
+%	length $f$ and a mirror as shown.
+%	Set up the ray matrix for this optical system to prove that it is, indeed, a retroreflector.
+%\end{problem}
+%
+%\begin{solution}
+%	
+%	\vfill
+%	
+%\end{solution}
+%
+%\pagebreak
+%===========================================================
+\begin{problem}[Thin Lens Experimental Design (10\,pts)]
+
+This is a bit of an open-ended experimental design problem where you are asked to apply reason and make reasonable judgments.
+
+\vspace{1em}
+Say you have a source (like a light bulb or dollar bill), an image sensor (a camera with the lens removed) and collection of converging and diverging lenses, all with focal lengths around 20\,cm, but all slightly different.
+
+How would you measure the focal length of one converging lens as accurately as possible and verify the thin lens law
+\[
+\frac{1}{o} + \frac{1}{i} = \frac{1}{f}
+\] 
+in as many of these situations as possible:
+\begin{itemize}
+	\item[(a)] real object, real image
+	\item[(b)] virtual object, real image
+	\item[(c)] real object, virtual image
+	\item[(d)] virtual object, virtual image
+\end{itemize}
+Remember that a ``virtual object'' or ``virtual image'' is on the wrong side of the lens from the usual situation and has a negative distance associated with it.
+% (In other sources, including many on the web, $d_1$ is called $o$ for the object distance and $d_2$ is called $i$ for the image distance. Feel free to use those variable names if you want.)
+
+\vspace{1em}
+Of course, to actually see anything, you need to start with a real object and you need to form a real image on a real screen. You'll need one or more helper lenses to deal with virtual objects and virtual images, but you don't know the focal lengths of these extra lenses exactly (only approximately, which will be good enough). You can set up a situation like, ``If a the bulb is at location A (in front of the helper lens), it will form a focused image on the camera. Instead, if I move the light bulb and arrange things so that the lens I care about forms a \textit{virtual image} of it at A, the helper lens will turn that into a real image on the camera because that's what it does to things at A. This way, once I've established where location A is, I can set up a few of these virtual image situations with slightly different distances, measure the relevant distances to A, use these to find $o$ and $i$, and plot the data.''
+
+\vspace{1em}
+Draw ray diagrams for the 3 of the 4 above situations achievable with a converging lens.
+
+\vspace{1em}
+If you plot the data on a plot whose axes are $1/o$ and $1/i$, argue that you get a straight line. What is the slope and intercept? Actually draw this line and pick at least two points in each relevant quadrant. Turn those points from $1/o$ and $1/i$ into $o$, $i$, and a magnification. Make sure those distances and magnifications are reasonable for your chosen points. If a magnification is bigger than around 3, the image will be too faint. If it's less than 1/3, it might be hard to find where things are in focus. This is the exercise that lab students need to go through before they start the lens lab.
+
+The 4th of the above 4 situations can only be achieved with a diverging lens. Explain why this is so using the thin lens law. Draw a ray diagram for this situation alone. Then draw a realistic situation that ultimately images a real object into a real image on a screen using the ``virtual object, virtual image'' as an intermediate stage. Using as few helper lenses as necessary. 
+
+\end{problem}
+
+\begin{solution}
+	
+	\vfill
+	
+\end{solution}
+
+\pagebreak
+%===========================================================
+
+
+\end{document}

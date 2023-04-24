@@ -1,0 +1,79 @@
+\documentclass[11pt]{hmcpset}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,enumerate,graphicx,url}
+
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\braket}[2]{\langle #1|#2\rangle}
+\newcommand{\braketop}[3]{\langle #1| #2 | #3 \rangle}
+\newcommand{\normsq}[1]{\left|#1\right|^2}
+\newcommand{\prob}[2]{\normsq{\braket{#1}{#2}}}
+\newcommand{\avg}[1]{\langle #1 \rangle}
+
+
+\usepackage{xcolor}
+\usepackage{listings}
+
+\definecolor{mGreen}{rgb}{0,0.6,0}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.82}
+\definecolor{backgroundColour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{Python}
+{
+	language=Python,
+	backgroundcolor=\color{backgroundColour},   
+	commentstyle=\color{mGreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{mGray},
+	stringstyle=\color{mPurple},
+	basicstyle=\footnotesize\ttfamily,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	%numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=3
+}
+
+
+
+\name{}
+\class{PHYS134}
+\assignment{Homework/Project 5}
+\duedate{2021-03-22}
+
+\begin{document}
+\problemlist{}
+
+
+
+
+
+%===========================================================
+\begin{problem}[Damped Fabry–Perot Cavity (10\,pts)]
+	Take the back-and-forth sum from lecture 16 and combine it with the phase shift accumulated by crossing the cavity ($kd$) to compute the intensity of light that exits the cavity in both directions along with the intensity of light inside of the cavity. Write your final result as a fraction of the intensity that is entering the cavity $I/I_0=?$. \\
+	
+	Check that energy is conserved: the incoming intensity must equal the outgoing intensities, both forward and backward. \\
+	
+	Make plots similar to those in lecture 15 and on page 117: as a function of frequency $\nu$, plot the fraction of the intensity of light that exits the cavity for different reflectivities: $|r|^2=50\%$, $|r|^2=90\%$, and $|r|^2=99\%$. (When we say a mirror is 50\% reflective, we mean that half of the \textit{intensity} reflects, because that's what we see and measure, not half of the wave amplitude.)	\\
+	
+	You can make the plot above assuming $r$ is real. Make additional plots for $|r|^2=90\%$, but allow $r$ to be complex to capture the case where there is a phase shift upon reflection. Pick a few phases to plot. Describe qualitatively what changes.	\\
+	
+	For each of these, calculate the ratio of intensity inside of the cavity to intensity exiting the cavity in the forward direction.
+\end{problem}
+
+\begin{solution}
+	\vfill
+\end{solution}
+\pagebreak
+
+
+
+
+
+\end{document}

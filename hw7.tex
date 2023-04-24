@@ -1,0 +1,206 @@
+\documentclass[11pt]{hmcpset}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,enumerate,graphicx,url}
+
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\braket}[2]{\langle #1|#2\rangle}
+\newcommand{\braketop}[3]{\langle #1| #2 | #3 \rangle}
+\newcommand{\normsq}[1]{\left|#1\right|^2}
+\newcommand{\prob}[2]{\normsq{\braket{#1}{#2}}}
+\newcommand{\avg}[1]{\langle #1 \rangle}
+
+
+\usepackage{xcolor}
+\usepackage{listings}
+
+\definecolor{mGreen}{rgb}{0,0.6,0}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.82}
+\definecolor{backgroundColour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{Python}
+{
+	language=Python,
+	backgroundcolor=\color{backgroundColour},   
+	commentstyle=\color{mGreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{mGray},
+	stringstyle=\color{mPurple},
+	basicstyle=\footnotesize\ttfamily,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	%numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=3
+}
+
+
+
+\name{}
+\class{PHYS134}
+\assignment{Homework/Project 7}
+\duedate{2021-04-12}
+
+\begin{document}
+\problemlist{}
+
+
+
+%===========================================================
+\begin{problem}[Sodium Doublet Theory]
+	In this question, you'll derive the interference pattern as a function of displacement $d$ of a Michelson Interferometer for the Sodium Doublet, two spectral lines roughly located at approximately $\lambda_1=589.0$\,nm and $\lambda_1=589.6$\,nm. Specifically, you'll derive the distance between maxima (or minima) of the fringe visibility.
+	\begin{enumerate}
+		\item As in class, assume simple plane-waves and ``unfold'' the interferometer. Assume what's seen at the detector (say at the origin) is one copy of the incoming time-dependent wave plus another copy shifted in time by $\tau$. Draw a picture of the interferometer with a source and detector along with its unfolded version. Explain why $\tau=2d/c$, where $d$ is the amount that a mirror has moved from equal-path-length.
+		\item Calculate the intensity at the detector as a function of $\tau$ assuming that the source consists of two angular frequencies $\omega_1$ and $\omega_2$, of equal amplitude. Don't bother with overall constants---only the \textit{form} of the intensity as a function of $\tau$ matters. You can do this in one of two ways:
+		\begin{enumerate}
+			\item Option 1: Real cosines [not recommended]. The Intensity is the time average of the electric field squared. This is not recommended because there are a lot of trig identities involved, and averaging over time requires more care.
+			\item Option 2: Complex exponentials [recommended]. The Intensity is the time average of the electric field \textit{magnitude} squared (complex field times its complex conjugate). Here, once you multiply out all of the terms, it's obvious which ones average way over any reasonable time---anything of the form $e^{i \omega t}$, where $\omega$ is anywhere near optical frequencies. Only terms involving $\tau$ remain. Remember, $\tau$ is something you control by setting the knob to a particular $d$.
+		\end{enumerate}
+	\item Write your answer in terms of $\omega$, the average of $\omega_1$ and $\omega_2$ along with their difference $\Delta \omega=\omega_1 - \omega_2$.
+	\item Plot this for the case where $\omega \approx 20 \Delta \omega$, which is not nearly as big a factor as in the sodium doublet, but produces a reasonable plot. I'm not interested in the axes or particular values---just the general picture.
+	\item Your plot should show ``fast fringes'' modulated by a slower envelope. The ``fast fringes'' go to from maxima to maxima as the knob is turned through roughly one average wavelength. The envelope goes from ``no fringes'' to ``bright fringes'' and back to ``no fringes'' on much longer distance scales. Find the amount that $d$ must change to go from ``no fringes'' back to ``no fringes''.
+	\end{enumerate}
+\end{problem}
+
+\begin{solution}
+	\vfill
+\end{solution}
+\pagebreak
+
+
+%===========================================================
+\begin{problem}[Sodium Doublet Analysis]
+	Watch the video of the experiment (might not be posted yet) Lab6FourierTransformSpectrometer.mp4  \\
+	\begin{enumerate}
+			\item Analyze the data in \texttt{lab6\_fts\_sodium\_doublet.csv} on Sakai. Remember that the ``zero'' reading on the micrometer has nothing to do with zero path length---that occurs somewhere in the middle of the micrometer's range so we can go in both directions. Also, the 1st, 2nd, 3nd, etc. minima don't really mean much by themselves, but provide an x-axis for a linear fit.
+			\item Be sure to show the three usual plots (data+fit, residuals, and normalized residuals). Be sure to calculate reduced $\chi^2$ and PTE. Be sure the fit parameters and these values are clearly printed.
+			\item Assume that you know that $\lambda_{avg}=589.3$ from some other means, like a diffraction grating that isn't sensitive enough to resolve the two spectral peaks on their own. Translate the fit parameters (or maybe only one fit parameter) into a $\Delta \lambda$ by proper propagation of error.
+    \end{enumerate}
+\end{problem}
+
+\begin{solution}
+\vfill
+\end{solution}
+\pagebreak
+
+
+%===========================================================
+\begin{problem}[Audio as Arrays in Python]
+	In this problem and the next, you'll get a taste for Fourier Transforms, time and frequency plots, and dealing with sampled data. You'll do this in the context of audio, where we have direct access to the amplitude as a function of time (unlike light, where we only can measure intensity). Many of you also have a feel for what different frequencies sound like.
+	\begin{enumerate}
+		\item You might want to start your notebook with \texttt{\%pylab notebook} this time, so you can zoom into long audio plots. Unfortunately, you'll need to explicitly start a new figure by typing \texttt{figure()} before each plot. I like to make the figure size as wide as possible without creating a scroll bar, so I do \texttt{figure(figsize=(9.5,5))} before each plot.
+		\item To embed and play audio in a notebook, you'll need to import a library. Here's code to import the library, create a tone, and play it.
+\begin{lstlisting}[style=Python]
+import IPython.display as ipd
+
+sample_rate = 32000 # sample rate in samples per second (Hz)
+T = 2.0    # total time in seconds
+t = linspace(0, T, int(T*sample_rate), endpoint=False) # time variable
+x = sin(2*pi*440*t)                # pure sine wave at 440 Hz
+
+ipd.Audio(x, rate=sample_rate) # play the array; normalize overall amplitude
+\end{lstlisting}
+\item Add some white Gaussian noise to the tone and play it. You can call \texttt{randn(len(t))} to generate the right number of random Gaussian samples. You'll want to scale down the amplitude of the noise.
+\item Plot both the tone and the tone+noise as a function of time. You'll want to use \texttt{xlim()} to zoom in enough to see the sine wave.
+\item Find or record a few-seconds-long sound as a \texttt{.wav} file, or suffer through my recording in \texttt{okso.wav} on Sakai. A \texttt{.wav} contains uncompressed audio samples plus some meta information like the sample rate. When scipy reads the wave file, it returns the sample rate and the data. If your file is in stereo, you may need to select one of the two channels. My example is not in stereo. Code to do this is:
+\begin{lstlisting}[style=Python]
+import scipy.io.wavfile
+(sample_rate, x) = scipy.io.wavfile.read('okso.wav')
+ipd.Audio(x, rate=sample_rate)
+\end{lstlisting}
+\vspace{-1em}
+\item Plot your file for the entire few-second time range and then zoom in. I'll help you construct an array of sample times for the x axis of the plot:
+\begin{lstlisting}[style=Python]
+t = arange(len(x)) / sample_rate  # make a sample-time array
+\end{lstlisting}
+\vspace{-1em}
+\item Plot the power spectral density by calling \texttt{psd()}. You'll need to pass in the sample rate so it knows how to scale the frequency x-axis. The y-axis is in decibels, where each 10dB is a factor of 10 in \textit{power}. Note the \textit{maximum} frequency, which is half of the sample rate. This maximum frequency would correspond to a wave whose samples go ``up,down,up,down,...'' (too high-pitched for old people like me to hear and maybe too high for your speakers to produce).
+\begin{lstlisting}[style=Python]
+psd(x, Fs=sample_rate);
+\end{lstlisting}
+	\end{enumerate}
+\end{problem}
+
+\begin{solution}
+	\vfill
+\end{solution}
+\pagebreak
+
+
+%===========================================================
+
+\begin{problem}[Audio Fourier Transforms in Python (continued from previous problem)]
+	\begin{enumerate}
+		\item Now for the real Fourier Transforms! Specifically the Fast Fourier Transform, which is an efficient, recursive method of taking the Fourier Transform of sampled data. The Fourier Transform can be inverted, so if there are 10\,000 samples in time to start with, the FFT will compute 10\,000 samples in frequency.
+\begin{lstlisting}[style=Python]
+xFFT = fft.fft(x)
+\end{lstlisting}
+\vspace{-1em}
+		\item Examine the array that's returned. It's full of complex numbers. These are the complex coefficients of $e^{2 \pi i f t}$ for each finely-spaced frequency $f$, which can be both positive and negative.
+		\item To get the frequencies corresponding to each frequency sample, use the function \texttt{ft.fftfreq()}, which needs to know the number of samples and the sample spacing:
+\begin{lstlisting}[style=Python]
+freq = fft.fftfreq(len(xFFT), 1.0/sample_rate)
+\end{lstlisting}
+\vspace{-1em}
+	    \item Check that \texttt{max(freq)} is close to half the sample rate---half the sample rate is the maximum frequency that can be sampled (remember ``up,down,up,down,...'').
+	    \item Check that the first non-zero frequency \texttt{freq[1]} is very close to the inverse of the total time of the waveform, \texttt{1/max(t)}. The resolution (the spacing) of the frequencies is set not by the sample rate, but by the total time. This lowest non-zero frequency corresponds to a complex exponential ($\cos+i \sin$) that oscillates exactly one full cycle during the total time. The first Fourier coefficient, \texttt{xFFT[1]}, corresponds to the (complex) amplitude of that oscillation. The second Fourier coefficient corresponds to the amplitude of the oscillation with two periods, and so on.
+	    \item The frequencies are stored in a particular way, with all of the positive frequencies first, then all of the negative frequencies. Look at this by plotting \texttt{freq} as a function of its index, just by \texttt{plot(freq)}.
+   		\item Plot the magnitude of \texttt{xFFT} with respect to its index with \texttt{plot(abs(xFFT))}. It looks like the spectrum drops off and then picks up again at the end, but this is an artifact of how positive and negative frequencies are stored.
+   		\item There are two ways to address this, and we'll do both. First plot the magnitude of the Fourier coefficients versus \texttt{freq}. Explore by zooming around. The plot should be symmetric around zero. This is because we started with a real signal, meaning that each negative-frequency coefficient is the complex conjugate of its positive counterpart. This way, when turned back into a function of time, they combine into real sines and cosines:
+	    
+	    \[(a+ib)e^{+2\pi i f t} + (a-ib)e^{-2\pi i f t} = 2a\cos(2\pi f t) -2 b \sin(2\pi f t)\]
+	    \item The other way to address this is to re-arrange the array itself so that the zero frequency isn't in the 0 index, but is in the center of the array. There is a convenient function for this called \texttt{fft.fftshift}, which can be used to re-arrange both the \texttt{xFFT} Fourier coefficients and the \texttt{freq} frequencies. Plot the shifted frequencies vs index. Plot the magnitude of the shifted Fourier coefficients versus index. We'll drop this method now, but when we get to 2D arrays, it's nice to show the 0 frequency at the center of the image rather than the corners.
+	\end{enumerate}
+\end{problem}
+
+\begin{solution}
+	\vfill
+\end{solution}
+\pagebreak
+
+
+
+%===========================================================
+\begin{problem}[Audio Filtering in Python (continued from previous problem)]
+	\begin{enumerate}
+		\item As an example of what you can do, we'll band-pass filter the wave file. Create a filter profile that's a Gaussian centered around some center frequency with some width. We use \texttt{abs(freq)}, as is done below, to filter both positive and negative frequencies symmetrically. Feel free to play with the parameters or try other filter functions. 
+\begin{lstlisting}[style=Python]
+center = 500 # Hz
+sigma  = 200 # Hz
+filt = exp(-(abs(freq)-center)**2/sigma**2)  # Gaussian shape
+\end{lstlisting}
+	    \item After you create the filter profile, plot it vs \texttt{freq}.
+		\item Now we'll do the filtering by multiplying our Fourier coefficients by the filter profile. This effectively zeros out frequencies far away from the chosen center (\texttt{center}) frequency.
+\begin{lstlisting}[style=Python]
+xFFT_filt = xFFT * filt  # apply the filter in the frequency domain
+\end{lstlisting}
+	\item Plot this vs \texttt{freq} and zoom around.
+	\item Then we'll inverse Fourier transform to get back a filtered version of the signal ``in the time domain'' (as a function of time). 
+\begin{lstlisting}[style=Python]
+x_filt_complex = fft.ifft(xFFT_filt)  # inverse Fourier transform!
+\end{lstlisting}
+	\item Unfortunately, due to rounding errors, the inverse-transformed signal has very small imaginary components. We'll throw those rounding errors away and just keep the real part. You should peek at each of these arrays as you make them.
+\begin{lstlisting}[style=Python]
+x_filt = x_filt_complex.real  # throw out the tiny imaginary components
+\end{lstlisting}
+	\item You should be able to play the filtered audio, plot it, and plot its power spectral density.
+	\item This has all been a warm-up exercise for diffraction, where we'll do 2D FFTs on 2D arrays. We'll have to keeping track of the spatial frequencies (the $\vec k$ vectors, each component of which can be positive or negative). Managing the layout of the arrays requires similar bookkeeping.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+	\vfill
+\end{solution}
+\pagebreak
+
+
+
+
+
+
+\end{document}
